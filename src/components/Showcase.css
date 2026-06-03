@@ -1,0 +1,128 @@
+.shw-wrap {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 5rem 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  min-height: 540px;
+}
+
+/* ── Left ─────────────────────────────────────── */
+.shw-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 3rem;
+}
+
+.shw-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.shw-step-num {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: #a855f7;
+  font-weight: 600;
+}
+
+.shw-title {
+  font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: #fff;
+  margin: 0;
+}
+
+.shw-desc {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.7;
+  margin: 0;
+  max-width: 420px;
+}
+
+/* ── Step buttons ─────────────────────────────── */
+.shw-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-top: 1px solid #1a1a1a;
+}
+
+.shw-dot {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #1a1a1a;
+  cursor: pointer;
+  text-align: left;
+  transition: opacity 0.2s;
+  width: 100%;
+}
+
+.shw-dot:hover {
+  opacity: 1 !important;
+}
+
+.shw-dot:not(.shw-dot--active) {
+  opacity: 0.35;
+}
+
+.shw-dot-num {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: #a855f7;
+  min-width: 24px;
+}
+
+.shw-dot-label {
+  font-size: 0.88rem;
+  color: #aaa;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.shw-dot--active .shw-dot-label {
+  color: #fff;
+}
+
+/* ── Right ────────────────────────────────────── */
+.shw-right {
+  height: 420px;
+}
+
+.shw-placeholder {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  background: #0d0d0d;
+  border: 1px solid #222;
+}
+
+/* ── Responsive ───────────────────────────────── */
+@media (max-width: 768px) {
+  .shw-wrap {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .shw-right {
+    height: 260px;
+  }
+
+  .shw-dot-label {
+    font-size: 0.8rem;
+  }
+}
