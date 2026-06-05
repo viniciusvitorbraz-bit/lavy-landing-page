@@ -1,8 +1,10 @@
 import './Hero.css';
+import CybercoreBackground from './ui/cybercore-section-hero';
 
 export default function Hero() {
   return (
     <section className="hero-section">
+      <CybercoreBackground beamCount={70} />
       <div className="hero-overlay" />
       <div className="hero-wrap">
         <h1 className="hero-headline">

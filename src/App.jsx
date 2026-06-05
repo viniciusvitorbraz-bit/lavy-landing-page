@@ -12,6 +12,7 @@ import Solution from './components/Solution'
 import Showcase from './components/Showcase'
 import { Bell, Eye, Clock, Users } from 'lucide-react'
 import ProblemCards from './components/ProblemCards'
+import Footer from './components/Footer'
 
 const tickerItems = [
   { value: '+40%', label: 'de conversão de leads' },
@@ -105,26 +106,6 @@ export default function App() {
       {/* 1 — Hero */}
       <Hero />
 
-      {/* Glow azul entre hero e ticker */}
-      <div style={{
-        position: 'relative',
-        height: 0,
-        overflow: 'visible',
-        zIndex: 2,
-        pointerEvents: 'none',
-      }}>
-        <div style={{
-          position: 'absolute',
-          top: '-40px',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          width: '55%',
-          height: '90px',
-          background: 'radial-gradient(ellipse at center, rgba(59,130,246,0.5) 0%, transparent 70%)',
-          filter: 'blur(18px)',
-        }} />
-      </div>
-
       {/* Stats Ticker */}
       <AnimatedCarousel items={tickerItems} />
 
@@ -205,6 +186,9 @@ export default function App() {
         <GradualBlur target="parent" position="top"    height="6rem" strength={3} divCount={8} curve="bezier" exponential opacity={1} />
         <GradualBlur target="parent" position="bottom" height="6rem" strength={3} divCount={8} curve="bezier" exponential opacity={1} />
       </section>
+
+      {/* Footer */}
+      <Footer />
     </>
   )
 }

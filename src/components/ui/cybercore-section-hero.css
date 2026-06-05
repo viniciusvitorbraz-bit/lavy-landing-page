@@ -1,0 +1,165 @@
+:root {
+  --cyber-bg: #000308;
+  --cyber-light: #00e5ff;
+  --cyber-highlight: #ffb86c;
+  --cyber-glow-1: rgba(0, 229, 255, 0.9);
+  --cyber-glow-2: rgba(0, 150, 255, 0.7);
+  --cyber-highlight-glow: rgba(255, 184, 108, 0.8);
+}
+
+.scene {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--cyber-bg);
+  background-image: radial-gradient(circle at 50% 50%, rgba(0, 229, 255, 0.15) 0%, transparent 60%);
+  perspective: 1000px;
+  z-index: 0;
+}
+
+/* The grid floor with perspective tilt */
+.floor {
+  position: absolute;
+  bottom: -10%;
+  left: 50%;
+  transform: translateX(-50%) rotateX(80deg);
+  transform-origin: bottom center;
+  width: 350%;
+  height: 130%;
+  background-image: 
+    linear-gradient(to right, rgba(0, 229, 255, 0.35) 1.5px, transparent 1.5px),
+    linear-gradient(to bottom, rgba(0, 229, 255, 0.35) 1.5px, transparent 1.5px);
+  background-size: 60px 60px;
+  opacity: 0.9;
+  mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 15%, rgba(0, 0, 0, 0) 85%);
+  -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 15%, rgba(0, 0, 0, 0) 85%);
+  animation: moveGrid 16s infinite linear, floorGlow 8s infinite ease-in-out;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Glowing neon horizon line at the far end of the floor grid */
+.floor::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-color: var(--cyber-light);
+  box-shadow: 
+    0 0 10px var(--cyber-light),
+    0 0 25px var(--cyber-glow-1),
+    0 0 50px var(--cyber-glow-2);
+}
+
+.main-column {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  background: radial-gradient(ellipse at center, rgba(0, 229, 255, 0.2) 0%, transparent 70%);
+  filter: blur(30px);
+  animation: mainGlow 6s infinite ease-in-out alternate;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.main-column::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  background: linear-gradient(to bottom, transparent, rgba(0, 229, 255, 0.3) 50%, rgba(0, 229, 255, 0.8) 100%);
+  box-shadow: 0 0 15px var(--cyber-glow-1);
+}
+
+.light-stream-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.light-beam {
+  position: absolute;
+  bottom: 0;
+  height: 100%;
+  opacity: 0;
+  animation-name: rise, fade;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear, ease-in-out;
+}
+
+.light-beam.primary {
+  background: linear-gradient(to top, transparent, var(--cyber-light) 50%, transparent);
+  box-shadow: 0 0 8px var(--cyber-glow-1);
+}
+
+.light-beam.secondary {
+  background: linear-gradient(to top, transparent, var(--cyber-highlight) 50%, transparent);
+  box-shadow: 0 0 8px var(--cyber-highlight-glow);
+}
+
+@keyframes rise {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-5%);
+    opacity: 0;
+  }
+}
+
+@keyframes fade {
+  0%, 100% {
+    opacity: 0;
+  }
+  5%, 85% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes floorGlow {
+  0%, 100% {
+    transform: translateX(-50%) rotateX(80deg) scale(0.97);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateX(-50%) rotateX(80deg) scale(1.03);
+    opacity: 1;
+  }
+}
+
+@keyframes mainGlow {
+  from {
+    opacity: 0.5;
+    filter: blur(35px);
+  }
+  to {
+    opacity: 0.8;
+    filter: blur(25px);
+  }
+}
+
+@keyframes moveGrid {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -120px -60px;
+  }
+}
